@@ -4,7 +4,7 @@ const compilerVariables = require("./compilerVariables");
 
 module.exports = source => {
   const options = getOptions(this) || {
-    fileName: "environments",
+    fileName: "env",
     extension: "js"
   };
 
