@@ -5,6 +5,7 @@
   "main": "src/cjs.js",
   "repository": "https://github.com/andrelmlins/variables-loader",
   "author": "André Lins <andrelucas01@hotmail.com> (https://andrelmlins.github.io/)",
+  "homepage": "https://github.com/andrelmlins/variables-loader",
   "license": "MIT",
   "private": false,
   "files": [
@@ -13,5 +14,14 @@
   ],
   "bugs": {
     "url": "https://github.com/andrelmlins/variables-loader/issues"
+  },
+  "keywords": [
+    "choose",
+    "port",
+    "server",
+    "host"
+  ],
+  "dependencies": {
+    "loader-utils": "^1.2.3"
   }
 }

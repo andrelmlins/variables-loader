@@ -1,12 +1,13 @@
 "use strict";
 
 const fs = require("fs");
+const jsonToDotNotate = require("./utils/jsonToDotNotate");
 
 const compilerVariables = (path, extension) => {
   if (extension === "js") {
-    return require(path)();
+    return jsonToDotNotate(require(path)());
   } else {
-    return fs.readFileSync(path);
+    return jsonToDotNotate(fs.readFileSync(path));
   }
 };
 
