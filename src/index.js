@@ -6,8 +6,8 @@ const createMask = require("./utils/createMask");
 
 module.exports = source => {
   let options = getOptions(this) || {
-    fileName: "env",
-    extension: "js",
+    fileName: "env.js",
+    format: "js",
     marker: "[[]]"
   };
 
@@ -20,11 +20,9 @@ module.exports = source => {
     process.exitCode(1);
   }
 
-  const pathFileVariables = resolverPath(
-    `${options.fileName}.${options.extension}`
-  );
+  const pathFileVariables = resolverPath(`${options.fileName}`);
 
-  const dictionary = compilerVariables(pathFileVariables, options.extension);
+  const dictionary = compilerVariables(pathFileVariables, options.format);
 
   if (source.search(/\[\[([^\[\[\]\]]+)\]\]/) > 0) {
     Object.keys(dictionary).forEach(key => {
