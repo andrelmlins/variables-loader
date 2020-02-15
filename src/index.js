@@ -11,6 +11,14 @@ module.exports = source => {
     marker: "[[]]"
   };
 
+  if (typeof options.fileName === "function") {
+    options.fileName = options.marker();
+  }
+
+  if (typeof options.format === "function") {
+    options.format = options.format();
+  }
+
   if (typeof options.marker === "function") {
     options.marker = options.marker();
   }
