@@ -1,26 +1,38 @@
 const { getOptions } = require("loader-utils");
 const resolverPath = require("./utils/resolverPath");
 const compilerVariables = require("./compilerVariables");
+const replaceAll = require("./utils/replaceAll");
+const createMask = require("./utils/createMask");
 
 module.exports = source => {
-  const options = getOptions(this) || {
+  let options = getOptions(this) || {
     fileName: "env",
-    extension: "js"
+    extension: "js",
+    marker: "[[]]"
   };
+
+  if (typeof options.marker === "function") {
+    options.marker = options.marker();
+  }
+
+  if (marker.length % 2 !== 0) {
+    console.error(new Error("Marker is invalid"));
+    process.exitCode(1);
+  }
 
   const pathFileVariables = resolverPath(
     `${options.fileName}.${options.extension}`
   );
 
-  const variables = compilerVariables(pathFileVariables, options.extension);
+  const dictionary = compilerVariables(pathFileVariables, options.extension);
 
   if (source.search(/\[\[([^\[\[\]\]]+)\]\]/) > 0) {
-    Object.keys(variables).forEach(key => {
-      const reg = new RegExp(
-        /\[\[/.source + key.replace("$", "") + /\]\]/.source,
-        "g"
+    Object.keys(dictionary).forEach(key => {
+      source = replaceAll(
+        source,
+        createMask(options.marker, key),
+        dictionary[key]
       );
-      source = source.replace(reg, target[key]);
     });
   }
 

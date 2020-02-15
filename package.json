@@ -5,6 +5,10 @@
   "main": "src/cjs.js",
   "repository": "https://github.com/andrelmlins/variables-loader",
   "author": "André Lins <andrelucas01@hotmail.com> (https://andrelmlins.github.io/)",
+  "contributors": [
+    "André Lins <andrelucas01@hotmail.com> (https://andrelmlins.github.io/)",
+    "Renato Oda <renato.oda2@gmail.com>"
+  ],
   "homepage": "https://github.com/andrelmlins/variables-loader",
   "license": "MIT",
   "private": false,
