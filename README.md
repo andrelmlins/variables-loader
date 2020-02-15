@@ -47,6 +47,20 @@ module.exports = {
 };
 ```
 
+## Options
+
+### `fileName`
+
+Type `String|Function` Default: `env.js`
+
+### `format`
+
+Type `String<js,json,txt>|Function<js,json,txt>` Default: `js`
+
+### `marker`
+
+Type `String|Function` Default: `[[]]`
+
 ## NPM Statistics
 
 Download stats for this NPM package
