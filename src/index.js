@@ -46,6 +46,5 @@ module.exports = function(source) {
     return source;
   }
 
-  console.error(new Error("Variables file not exist"));
   return source;
 };
