@@ -1,6 +1,6 @@
 {
   "name": "variables-loader",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Webpack loader to parse variables",
   "main": "src/cjs.js",
   "repository": "https://github.com/andrelmlins/variables-loader",
