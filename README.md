@@ -35,7 +35,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(png|jpe?g|gif)$/i,
+        test: /\.(ts|js)x?$/,
         use: [
           {
             loader: "variables-loader"

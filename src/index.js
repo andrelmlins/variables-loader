@@ -36,6 +36,7 @@ module.exports = source => {
 
     if (source.search(/\[\[([^\[\[\]\]]+)\]\]/) > 0) {
       Object.keys(dictionary).forEach(key => {
+        console.log(source, createMask(options.marker, key), dictionary[key]);
         source = replaceMask(
           source,
           createMask(options.marker, key),

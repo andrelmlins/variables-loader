@@ -1,20 +1,22 @@
 "use strict";
 
-const jsonToDotNotate = (obj, target, prefix) =>
-  Object.keys(obj).forEach(key => {
+const jsonToDotNotate = (obj, target = {}, prefix) =>
+  Object.keys(obj).reduce((acc, key) => {
     if (typeof obj[key] === "object") {
       if (prefix) {
-        return jsonToDotNotate(obj[key], target, prefix + "." + key);
+        return jsonToDotNotate(obj[key], acc, prefix + "." + key);
       }
 
-      return jsonToDotNotate(obj[key], target, key);
+      return jsonToDotNotate(obj[key], acc, key);
     }
 
     if (prefix) {
-      return (target[prefix + "." + key] = obj[key]);
+      acc[prefix + "." + key] = obj[key];
+      return acc;
     }
 
-    return (target[key] = obj[key]);
-  });
+    acc[key] = obj[key];
+    return acc;
+  }, target);
 
 module.exports = jsonToDotNotate;

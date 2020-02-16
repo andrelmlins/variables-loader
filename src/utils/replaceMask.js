@@ -5,7 +5,7 @@ const replaceAll = (string, search, replace) =>
 
 const replaceMask = (string, search, replace) => {
   if (Array.isArray(search)) {
-    return search.map(item => replaceAll(string, search, replace));
+    return search.map(item => replaceAll(string, item, replace));
   }
 
   return replaceAll(string, search, replace);
