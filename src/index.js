@@ -1,7 +1,7 @@
 const { getOptions } = require("loader-utils");
 const resolverPath = require("./utils/resolverPath");
 const compilerVariables = require("./compilerVariables");
-const replaceAll = require("./utils/replaceAll");
+const replaceMask = require("./utils/replaceMask");
 const createMask = require("./utils/createMask");
 
 module.exports = source => {
@@ -12,7 +12,7 @@ module.exports = source => {
   };
 
   if (typeof options.fileName === "function") {
-    options.fileName = options.marker();
+    options.fileName = options.fileName();
   }
 
   if (typeof options.format === "function") {
@@ -34,7 +34,7 @@ module.exports = source => {
 
   if (source.search(/\[\[([^\[\[\]\]]+)\]\]/) > 0) {
     Object.keys(dictionary).forEach(key => {
-      source = replaceAll(
+      source = replaceMask(
         source,
         createMask(options.marker, key),
         dictionary[key]

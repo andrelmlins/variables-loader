@@ -59,7 +59,7 @@ Type `String<js,json,txt>|Function<js,json,txt>` Default: `js`
 
 ### `marker`
 
-Type `String|Function` Default: `[[]]`
+Type `String|Function|Array` Default: `[[]]`
 
 ## NPM Statistics
 
