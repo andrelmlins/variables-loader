@@ -51,7 +51,7 @@ Type `String|Function` Default: `env.js`
 
 ### `format`
 
-Type `String<js,json,txt>|Function<js,json,txt>` Default: `js`
+Type `String<js,json,txt>|Function<js,json,env>` Default: `js`
 
 ### `marker`
 

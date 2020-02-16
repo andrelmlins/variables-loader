@@ -1,10 +1,11 @@
 "use strict";
 
 const fs = require("fs");
+const dotenv = require("dotenv");
 const jsonToDotNotate = require("./utils/jsonToDotNotate");
 
-const compilerVariables = (path, extension) => {
-  if (extension === "js") {
+const compilerVariables = (path, format) => {
+  if (format === "js") {
     const fileConfig = require(path);
 
     if (typeof fileConfig === "function") {
@@ -12,9 +13,15 @@ const compilerVariables = (path, extension) => {
     }
 
     return jsonToDotNotate(fileConfig);
-  } else {
-    return jsonToDotNotate(fs.readFileSync(path));
+  } else if (format === "txt") {
+    const file = fs.readFileSync(path);
+
+    return dotenv.parse(file);
   }
+
+  return jsonToDotNotate(
+    JSON.parse(fs.readFileSync(path, { encoding: "utf-8" }))
+  );
 };
 
 module.exports = compilerVariables;
