@@ -3,6 +3,7 @@ const resolverPath = require("./utils/resolverPath");
 const compilerVariables = require("./compilerVariables");
 const replaceMask = require("./utils/replaceMask");
 const createMask = require("./utils/createMask");
+const fs = require("fs");
 
 module.exports = source => {
   let options = getOptions(this) || {
@@ -23,24 +24,29 @@ module.exports = source => {
     options.marker = options.marker();
   }
 
-  if (marker.length % 2 !== 0) {
+  if (options.marker.length % 2 !== 0) {
     console.error(new Error("Marker is invalid"));
     process.exitCode(1);
   }
 
   const pathFileVariables = resolverPath(`${options.fileName}`);
 
-  const dictionary = compilerVariables(pathFileVariables, options.format);
+  if (fs.existsSync(pathFileVariables)) {
+    const dictionary = compilerVariables(pathFileVariables, options.format);
 
-  if (source.search(/\[\[([^\[\[\]\]]+)\]\]/) > 0) {
-    Object.keys(dictionary).forEach(key => {
-      source = replaceMask(
-        source,
-        createMask(options.marker, key),
-        dictionary[key]
-      );
-    });
+    if (source.search(/\[\[([^\[\[\]\]]+)\]\]/) > 0) {
+      Object.keys(dictionary).forEach(key => {
+        source = replaceMask(
+          source,
+          createMask(options.marker, key),
+          dictionary[key]
+        );
+      });
+    }
+
+    return source;
   }
 
+  console.error(new Error("Variables file not exist"));
   return source;
 };
