@@ -13,7 +13,7 @@ const compilerVariables = (path, format) => {
     }
 
     return jsonToDotNotate(fileConfig);
-  } else if (format === "txt") {
+  } else if (format === "env") {
     const file = fs.readFileSync(path);
 
     return dotenv.parse(file);
