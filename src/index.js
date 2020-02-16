@@ -5,12 +5,11 @@ const replaceMask = require("./utils/replaceMask");
 const createMask = require("./utils/createMask");
 const fs = require("fs");
 
-module.exports = source => {
-  let options = getOptions(this) || {
-    fileName: "env.js",
-    format: "js",
-    marker: "[[]]"
-  };
+module.exports = function(source) {
+  let optionsDefault = { fileName: "env.js", format: "js", marker: "[[]]" };
+  let options = getOptions(this) || {};
+
+  options = { ...optionsDefault, ...options };
 
   if (typeof options.fileName === "function") {
     options.fileName = options.fileName();

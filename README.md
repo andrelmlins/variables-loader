@@ -36,11 +36,7 @@ module.exports = {
     rules: [
       {
         test: /\.(ts|js)x?$/,
-        use: [
-          {
-            loader: "variables-loader"
-          }
-        ]
+        use: ["variables-loader"]
       }
     ]
   }
