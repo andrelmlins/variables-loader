@@ -3,6 +3,7 @@ const resolverPath = require("./utils/resolverPath");
 const compilerVariables = require("./compilerVariables");
 const replaceMask = require("./utils/replaceMask");
 const createMask = require("./utils/createMask");
+const runFunction = require("./utils/runFunction");
 const fs = require("fs");
 
 module.exports = function(source) {
@@ -11,17 +12,7 @@ module.exports = function(source) {
 
   options = { ...optionsDefault, ...options };
 
-  if (typeof options.fileName === "function") {
-    options.fileName = options.fileName();
-  }
-
-  if (typeof options.format === "function") {
-    options.format = options.format();
-  }
-
-  if (typeof options.marker === "function") {
-    options.marker = options.marker();
-  }
+  options = runFunction(options);
 
   if (options.marker.length % 2 !== 0) {
     console.error(new Error("Marker is invalid"));
