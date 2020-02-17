@@ -3,16 +3,14 @@ const resolverPath = require("./utils/resolverPath");
 const compilerVariables = require("./compilerVariables");
 const replaceMask = require("./utils/replaceMask");
 const createMask = require("./utils/createMask");
-const runFunction = require("./utils/runFunction");
+const runFunctions = require("./utils/runFunctions");
 const fs = require("fs");
 
 module.exports = function(source) {
   let optionsDefault = { fileName: "env.js", format: "js", marker: "[[]]" };
   let options = getOptions(this) || {};
 
-  options = { ...optionsDefault, ...options };
-
-  options = runFunction(options);
+  options = runFunctions({ ...optionsDefault, ...options });
 
   if (options.marker.length % 2 !== 0) {
     console.error(new Error("Marker is invalid"));
