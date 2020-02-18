@@ -49,13 +49,145 @@ module.exports = {
 
 Type `String|Function` Default: `env.js`
 
+**webpack.config.js**
+
+#### `String`
+
+```js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.(ts|js)x?$/,
+        loader: "variables-loader",
+        options: {
+          fileName: "environments.js"
+        }
+      }
+    ]
+  }
+};
+```
+
+#### `Function`
+
+```js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.(ts|js)x?$/,
+        loader: "variables-loader",
+        options: {
+          fileName: () => {
+            if (process.env.NODE_ENV === "development") {
+              return "environments.test.js";
+            }
+
+            return "environments.js";
+          }
+        }
+      }
+    ]
+  }
+};
+```
+
 ### `format`
 
 Type `String<js,json,txt>|Function<js,json,env>` Default: `js`
 
+**webpack.config.js**
+
+#### `String`
+
+```js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.(ts|js)x?$/,
+        loader: "variables-loader",
+        options: {
+          format: "js"
+        }
+      }
+    ]
+  }
+};
+```
+
+#### `Function`
+
+```js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.(ts|js)x?$/,
+        loader: "variables-loader",
+        options: {
+          marker: () => {
+            if (process.env.NODE_ENV === "development") {
+              return "json";
+            }
+
+            return "js";
+          }
+        }
+      }
+    ]
+  }
+};
+```
+
 ### `marker`
 
 Type `String|Function|Array` Default: `[[]]`
+
+**webpack.config.js**
+
+#### `String`
+
+```js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.(ts|js)x?$/,
+        loader: "variables-loader",
+        options: {
+          marker: "{{}}"
+        }
+      }
+    ]
+  }
+};
+```
+
+#### `Function`
+
+```js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.(ts|js)x?$/,
+        loader: "variables-loader",
+        options: {
+          marker: () => {
+            if (process.env.NODE_ENV === "development") {
+              return "{{}}";
+            }
+
+            return "[[]]";
+          }
+        }
+      }
+    ]
+  }
+};
+```
 
 ## NPM Statistics
 
