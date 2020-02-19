@@ -1,8 +1,8 @@
-"use strict";
+'use strict';
 
 const runFunctions = obj => {
   Object.keys(obj).map(key => {
-    if (typeof obj[key] === "function") {
+    if (typeof obj[key] === 'function') {
       obj[key] = obj[key]();
     }
   }, target);

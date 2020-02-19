@@ -1,8 +1,8 @@
-"use strict";
+'use strict';
 
 const insertKey = (marker, key) => {
   const first = marker.slice(0, marker.length / 2);
-  const last = marker.replace(first, "");
+  const last = marker.replace(first, '');
 
   return `${first}${key}${last}`;
 };

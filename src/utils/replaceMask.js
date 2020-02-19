@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 const replaceAll = (string, search, replace) =>
   string.split(search).join(replace);
