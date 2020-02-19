@@ -43,6 +43,28 @@ module.exports = {
 };
 ```
 
+### How will the result be?
+
+**before in Link.jsx**
+
+```jsx
+import React from "react";
+
+const LinkComponent = () => <a href="[[URL]]">Link</a>;
+
+export default LinkComponent;
+```
+
+**after in Link.jsx**
+
+```jsx
+import React from "react";
+
+const LinkComponent = () => <a href="http://www.example.com">Link</a>;
+
+export default LinkComponent;
+```
+
 ## Options
 
 ### `fileName`
@@ -127,7 +149,7 @@ module.exports = {
         test: /\.(ts|js)x?$/,
         loader: "variables-loader",
         options: {
-          marker: () => {
+          format: () => {
             if (process.env.NODE_ENV === "development") {
               return "json";
             }
