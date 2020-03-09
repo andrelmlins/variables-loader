@@ -19,10 +19,9 @@
     "url": "https://github.com/andrelmlins/variables-loader/issues"
   },
   "keywords": [
-    "choose",
-    "port",
-    "server",
-    "host"
+    "variables",
+    "loader",
+    "webpack"
   ],
   "dependencies": {
     "dotenv": "^8.2.0",
