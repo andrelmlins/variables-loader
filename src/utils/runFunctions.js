@@ -5,7 +5,7 @@ const runFunctions = obj => {
     if (typeof obj[key] === 'function') {
       obj[key] = obj[key]();
     }
-  }, target);
+  });
 
   return obj;
 };
